@@ -1,0 +1,35 @@
+
+#Link: https://leetcode.com/problems/set-matrix-zeroes/submissions/1614015065
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        # rows are subarrays, column elements make up those subarrs
+
+        # if there is a zero, all of that subarray = 0
+        # subbarr = [0] * len(subarray)
+      
+        zeroIndList = []
+
+        for index, sublist in enumerate(matrix):
+            print(index, sublist)
+
+            if 0 in sublist:
+                for subIndex, num in enumerate(sublist): # necessary because sublist.index(num) 
+                                                         # always returned the first instance
+                    if num == 0:
+                        zeroIndList.append(subIndex)
+                        print(zeroIndList)
+
+                
+                sublist = [0] * len(sublist)
+                matrix[index] = sublist #making the sublist all 0s
+
+        for sublist in matrix:
+            for num in zeroIndList:
+                    sublist[num] = 0
+
+        return matrix
+        
+        
