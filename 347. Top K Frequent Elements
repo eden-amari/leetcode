@@ -1,0 +1,30 @@
+Link: https://leetcode.com/problems/top-k-frequent-elements/submissions/1615294374
+
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        if len(nums) == 1:
+            return nums
+
+        list = []
+        dict = {}
+        for num in nums: # O(n)
+            if num not in dict:
+                dict[num] = 1
+            else:
+                dict[num] +=1
+
+        for key, val in dict.items():
+            list.append([key, val])
+        #print(list)
+
+            # if [num, nums.count(num)] not in list: # change nums.count because it has O(n)
+            #     list.append([num, nums.count(num)]) #O(1)
+        list.sort(key=lambda x: x[1])
+        list = list[::-1]
+        #print(list)
+        output = []
+        for outCount in range(k):
+            output.append(list[outCount][0])
+
+        return output
+        
